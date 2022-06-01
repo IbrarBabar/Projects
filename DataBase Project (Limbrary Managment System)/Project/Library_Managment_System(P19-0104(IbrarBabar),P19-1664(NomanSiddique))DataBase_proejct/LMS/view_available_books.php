@@ -40,7 +40,8 @@ if(isset($_POST['login'])){
  session_start();
    $roll= $_SESSION['email'];
 
- $query_1 = $conn->prepare(" select * from books join join_data using (book_id) join users using (id) where email != ?");
+//  $query_1 = $conn->prepare("select book_name,author_id from books join join_data using (book_id) join users using (id) where email != ?");
+$query_1 = $conn->prepare("select * from Books");
  $query_1->execute([$roll]);
  $result = $query_1->fetchAll(PDO::FETCH_ASSOC);
 
@@ -68,30 +69,25 @@ if(isset($_POST['login'])){
 		<form>
 			<table class="table-bordered" width="900px" style="text-align: center">
 				<tr>
-					<th>Book ID</th>	
 					<th>Book Name</th>
 					<th>Author ID</th>
-					
 				</tr>
-				
 				<?php
-					foreach ($result as $key=>$value){
-						
+					foreach ($result as $key=>$value)
+					{	
 						$Book_name = "";
 						$author_id = "";
-						$book_id="";
-						$book_id=$value['book_id'];
+						$book_p="";
 						$Book_name = $value['book_name'];
-						$author_id = $value['author_id'];
-						
+						$author_id = $value['author_id'];	
 				?>
-				
 						<tr>
-							<td><?php echo $book_id;?></td>
+						<form action="register_book.php" method="post">
 							<td><?php echo $Book_name;?></td>
 							<td><?php echo $author_id;?></td>
+							<td><button type="submit" name="login" class="btn btn-primary">Register</button><td>
 							</form>
-						</tr>				
+						</tr>
 						<?php
 					}
 				?>
@@ -100,14 +96,6 @@ if(isset($_POST['login'])){
 	</div>
 	<div class="col-md-2"></div>
 </div>
-
-<br><br>
-			<center><h4>For Register Book click the Botton</h4></center><br>
-			<form action="register_book.php" method="post">
-			<center>	<button type="submit" class="btn btn-primary">Register Avaialbe Books</button></center>
-			</form>
-	</div>
-	</div>
  </tbody>
  </table>
  <?php
@@ -115,7 +103,11 @@ if(isset($_POST['login'])){
 }
 else{
 	?>
-	<br><br><center><span class="alert-danger">Wrong Password</span></center>
+	<!-- <br><br><center><span class="alert-danger">Wrong Password</span></center> -->
+	<script type="text/javascript">
+	alert("Registration successfully....You may login now.")
+	window.location.href = "index.php";
+</script>
 	<?php
 }
 ?>
