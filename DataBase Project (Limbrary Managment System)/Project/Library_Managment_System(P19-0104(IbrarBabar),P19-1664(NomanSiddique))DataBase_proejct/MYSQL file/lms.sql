@@ -22,7 +22,11 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`book_id`, `book_name`, `author_id`, `book_price`) VALUES
 (1, 'Software engineering', 101, 270),
-(2, 'Data structure', 102, 300);
+(2, 'Data structure', 102, 300),
+(3,"OOP",102,350),
+(4,"Databases",103,400),
+(5,"Algorithm",104,500),
+(6,"Software",105,550);
 
 
 
@@ -41,6 +45,8 @@ INSERT INTO `issued_books` (`s_no`,`book_name`, `book_author`, `user_id`, `statu
 (18,'operating system', 'skoatler', 2, 1, '2020-04-22');
 
 
+
+
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -54,6 +60,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `mobile`, `address`) VALUES
 (4, 'user', 'user@gmail.com', 'user@1234', 2147483644, 'XYZ Coloney, PQR Nagar , Jaipur'),
 (7, 'ali', 'ali@gmail.com', 'ali@123', 2147483644, 'XYZ Coloney, PQR Nagar , Jaipur');
+insert into users values(1,"ibrar","usman@gmail.com",123,03364177,"Alraheem Garden, Lahore");
 
 
 create table join_data(
@@ -62,15 +69,12 @@ create table join_data(
      primary key(id,book_id)
      );
  insert into join_data values(1,1);
- insert into join_data values(1,6);
+ insert into join_data values(1,2);
+ insert into join_data values(1,3);
+ insert into join_data values(1,4);
  insert into join_data values(1,5);
- insert into join_data values(2,2);
- insert into join_data values(2,3);
  insert into join_data values(3,1);
 
-
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`id`);
 
 
 ALTER TABLE `authors`
@@ -97,8 +101,6 @@ ALTER TABLE `authors`
   MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 
-ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 
 
@@ -110,4 +112,8 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
+
+
+ALTER TABLE `books`
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
