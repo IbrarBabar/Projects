@@ -23,6 +23,7 @@ onymous">
   	</style>
 </head>
 <body>
+
 <?php 
 if(isset($_POST['login'])){
  {
@@ -39,7 +40,8 @@ if(isset($_POST['login'])){
  session_start();
    $roll= $_SESSION['email'];
 
- $query_1 = $conn->prepare("select book_name,book_author from issued_books join users using (id) where email = ?");
+//  $query_1 = $conn->prepare("select book_name,book_author from issued_books join users using (id) where email = ?");
+$query_1 = $conn->prepare("select * from issued_books");
  $query_1->execute([$roll]);
  $result = $query_1->fetchAll(PDO::FETCH_ASSOC);
 
